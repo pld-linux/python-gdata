@@ -10,6 +10,7 @@ Source0:	http://gdata-python-client.googlecode.com/files/%{module}.py-%{version}
 # Source0-md5:	521f33a377d64f8a6505ba119415b787
 URL:		http://code.google.com/p/gdata-python-client/
 BuildRequires:	python >= 1:2.5
+BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.219
 %pyrequires_eq	python-libs
