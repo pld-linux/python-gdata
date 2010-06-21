@@ -2,12 +2,12 @@
 Summary:	Google Data API for Python
 Summary(pl.UTF-8):	API Google Data dla Pythona
 Name:		python-%{module}
-Version:	1.2.4
+Version:	2.0.10
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Python
-Source0:	http://gdata-python-client.googlecode.com/files/%{module}.py-%{version}.tar.gz
-# Source0-md5:	521f33a377d64f8a6505ba119415b787
+Source0:	http://gdata-python-client.googlecode.com/files/%{module}-%{version}.tar.gz
+# Source0-md5:	118611eef4e97f025dd351bbab01bee2
 URL:		http://code.google.com/p/gdata-python-client/
 BuildRequires:	python >= 1:2.5
 BuildRequires:	python-devel
@@ -26,7 +26,7 @@ Projekt Google Data Python Client Library udostępnia wraz z kodem
 bibliotekę ułatwiającą dostęp do danych poprzez API Google Data.
 
 %prep
-%setup -q -n %{module}.py-%{version}
+%setup -q -n %{module}-%{version}
 
 %build
 %{__python} setup.py build
@@ -51,5 +51,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.txt RELEASE_NOTES.txt
 %{py_sitescriptdir}/%{module}
 %{py_sitescriptdir}/atom
-%{py_sitescriptdir}/gdata.py-*.egg-info
+%{py_sitescriptdir}/gdata-*.egg-info
 %{_examplesdir}/%{name}-%{version}
