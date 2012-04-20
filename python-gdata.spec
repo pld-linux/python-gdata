@@ -2,12 +2,12 @@
 Summary:	Google Data API for Python
 Summary(pl.UTF-8):	API Google Data dla Pythona
 Name:		python-%{module}
-Version:	2.0.16
+Version:	2.0.17
 Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Python
 Source0:	http://gdata-python-client.googlecode.com/files/%{module}-%{version}.tar.gz
-# Source0-md5:	10e78a7f3bbccbaec266590f412e833e
+# Source0-md5:	8c3600cf02c6c228e28e366b2e5d5c32
 URL:		http://code.google.com/p/gdata-python-client/
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-pythonprov
