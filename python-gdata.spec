@@ -28,15 +28,13 @@ bibliotekę ułatwiającą dostęp do danych poprzez API Google Data.
 %setup -q -n %{module}-%{version}
 
 %build
-%{__python} setup.py build
+%py_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%{__python} setup.py install \
-	--root=$RPM_BUILD_ROOT \
-	--optimize=2
+%py_install
 
 cp -r samples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
