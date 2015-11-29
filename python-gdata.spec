@@ -11,7 +11,7 @@ Source0:	http://gdata-python-client.googlecode.com/files/%{module}-%{version}.ta
 URL:		http://code.google.com/p/gdata-python-client/
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.219
+BuildRequires:	rpmbuild(macros) >= 1.710
 %pyrequires_eq	python-libs
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
