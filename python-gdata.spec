@@ -1,18 +1,24 @@
+#
+# Conditional build:
+%bcond_without	tests	# unit tests
+
 %define		module	gdata
 Summary:	Google Data API for Python
 Summary(pl.UTF-8):	API Google Data dla Pythona
 Name:		python-%{module}
-Version:	2.0.17
-Release:	4
+Version:	2.0.18
+Release:	1
 License:	Apache v2.0
 Group:		Development/Languages/Python
-Source0:	http://gdata-python-client.googlecode.com/files/%{module}-%{version}.tar.gz
-# Source0-md5:	8c3600cf02c6c228e28e366b2e5d5c32
-URL:		http://code.google.com/p/gdata-python-client/
+#Source0Download: https://pypi.python.org/simple/gdata
+Source0:	https://pypi.python.org/packages/source/g/gdata/%{module}-%{version}.tar.gz
+# Source0-md5:	13b6e6dd8f9e3e9a8e005e05a8329408
+URL:		https://github.com/google/gdata-python-client
 BuildRequires:	python >= 1:2.5
+BuildRequires:	python-modules >= 1:2.5
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.710
-%pyrequires_eq	python-libs
+BuildRequires:	rpmbuild(macros) >= 1.714
+Requires:	python-modules >= 1:2.5
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,11 +30,26 @@ code that make it easy to access data through Google Data APIs.
 Projekt Google Data Python Client Library udostępnia wraz z kodem
 bibliotekę ułatwiającą dostęp do danych poprzez API Google Data.
 
+%package apidocs
+Summary:	Google Data Python module documentation in HTML format
+Summary(pl.UTF-8):	Dokumentacja modułu Pythona Google Data w formacie HTML
+Group:		Documentation
+
+%description apidocs
+Google Data Python module documentation in HTML format.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja modułu Pythona Google Data w formacie HTML.
+
 %prep
 %setup -q -n %{module}-%{version}
 
 %build
 %py_build
+
+%if %{with tests}
+PYTHONPATH=$(pwd)/build-2/lib %{__python} tests/run_data_tests.py
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -36,7 +57,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %py_install
 
-cp -r samples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+cp -pr samples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %py_postclean
 
@@ -50,3 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitescriptdir}/atom
 %{py_sitescriptdir}/gdata-*.egg-info
 %{_examplesdir}/%{name}-%{version}
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc pydocs/*.html
